@@ -1,0 +1,27 @@
+Algoritmo SERIE_DE_TAYLOR_FUNCION_SENO
+	Escribir "Aproximacion de la funcion sen(x), Serie de Taylor"
+	Escribir "Si quiere hacer la prueba en su calculadora, debe estar configurada en Rad"
+	
+	Escribir "introducir el valor de n:"
+	
+	leer m
+	
+	Escribir "introducir el valor de x"
+	
+	leer x
+	seno<-0
+	para n<-1 hasta m con paso 1 hacer
+		f<-1
+		r<-2*n-1
+		Para i<-1 hasta r Con Paso 1 Hacer
+			f<-f*i
+		FinPara
+		seno<-seno+(-1)^(n+1)*x^r/f
+		
+		
+	FinPara
+	
+	Escribir "la aproximacion es:" seno;
+	
+	
+FinAlgoritmo
