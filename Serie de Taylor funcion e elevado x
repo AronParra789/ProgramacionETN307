@@ -1,0 +1,27 @@
+Algoritmo SERIE_DE_TAYLOR_FUNCION_E_ELEVADO_X
+	Escribir "Aproximacion de la funcion e^x, Serie de Taylor"
+	
+	Escribir  "introducir el valor de n y x"
+	
+	leer m
+	leer x
+	
+	aprox<-2.718281828
+	
+	para n<-1 hasta m con paso 1 hacer
+		f<-1
+		r<-n
+		Para i<-1 hasta r Con Paso 1 Hacer
+			f<-f*i
+		FinPara
+		
+		e=2.718281828
+		
+		aprox <- aprox + (e)*(x-1)^r/f
+		
+		
+	FinPara
+	
+	Escribir "la aprox es:" aprox;
+	
+FinAlgoritmo
