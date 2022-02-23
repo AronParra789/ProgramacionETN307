@@ -1,0 +1,17 @@
+Algoritmo SERIE_DE_TAYLOR_FUNCION_COS
+	Escribir 'Aproximacion de la funcion cos(x), Serie de Taylor'
+	Escribir 'introducir el valor de n:'
+	Leer m
+	Escribir 'introducir el valor de x'
+	Leer x
+	c <- 1
+	Para n<-1 Hasta m Hacer
+		f <- 1
+		r <- 2*n
+		Para i<-1 Hasta r Hacer
+			f <- f*i
+		FinPara
+		c <- c +(-1)^(n)*x^r/f
+	FinPara
+	Escribir 'la aproximacion es:', c;
+FinAlgoritmo
