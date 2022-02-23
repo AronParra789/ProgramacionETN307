@@ -1,0 +1,38 @@
+Algoritmo ECUACIONES_DE_SEGUNDO_GRADO
+	Escribir "Solucion a ecuaciones de segundo grado de la forma ax^2+bx+c=0"
+	Escribir "Introducir el valor de a"
+	leer a; 
+	Escribir "Introducir el valor de b"
+	leer b;
+	Escribir "Introducir el valor de c"
+	leer c;
+	discri = b*b - 4*a*c
+	si (discri < 0) Entonces
+		partereal = (-b) / (2*a)
+		parteim = (rc((b*b-4*a*c)*(-1)))/(2*a)
+		
+		Escribir "la solucion tiene parte imaginaria:" partereal "+" parteim "i" " y " partereal "+" parteim "i";
+	FinSi
+	
+	si (a=0) Entonces
+		Escribir "La solucion es una indeterminacion"
+	FinSi
+
+	
+	si (discri > 0) Entonces
+		x1 =  (-b + rc(b*b-4*a*c)) / (2*a) 
+		x2 =  (-b - rc(b*b-4*a*c)) / (2*a)
+		
+		Escribir "La solucion de la ecuacion es:" x1 " y " x2;
+	FinSi
+	
+	si (discri = 0) Entonces
+		x1 =  (-b + rc(b*b-4*a*c)) / (2*a) 
+		x2 =  (-b - rc(b*b-4*a*c)) / (2*a)
+		
+		Escribir "La unica solucion es:" x1;
+	FinSi
+	
+	
+	
+FinAlgoritmo
