@@ -1,0 +1,89 @@
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String args[]) {
+
+        Scanner lectura = new Scanner (System.in);
+
+        System.out.println("Ingrese el grado del numerador: ");
+        int gradoNumerador = lectura.nextInt();
+        int [] coeficientesNumerador = new int[gradoNumerador + 1];
+        int pivoteGradoNumerador = gradoNumerador;
+        for (int i = 0; i < coeficientesNumerador.length; i++) {
+            System.out.println("Ingrese x^" + pivoteGradoNumerador);
+            int coeficiente = lectura.nextInt();
+            coeficientesNumerador[i] = coeficiente;
+            pivoteGradoNumerador--;
+        }
+
+        System.out.println("Ingrese el grado del denominador: ");
+        int gradoDenominador = lectura.nextInt();
+        int [] coeficientesDenominador = new int[gradoDenominador + 1];
+        int pivoteGradoDenominador = gradoDenominador;
+        for (int i = 0; i < coeficientesDenominador.length; i++) {
+            System.out.println("Ingrese x^" + pivoteGradoDenominador);
+            int coeficiente = lectura.nextInt();
+            if (i == 0) {
+                coeficientesDenominador[i] = coeficiente;
+            } else {
+                coeficientesDenominador[i] = coeficiente * -1;
+            }
+            pivoteGradoDenominador--;
+        }
+
+        int [] resultado = new int[gradoNumerador + 1];
+        resultado[0] = coeficientesNumerador[0] / coeficientesDenominador[0];
+        for (int i = 1; i < coeficientesNumerador.length; i++) {
+            int pivot = i;
+            for (int k = 1; k < coeficientesDenominador.length; k++) {
+                if (pivot == coeficientesNumerador.length) {
+                    break;
+                } else {
+                    coeficientesNumerador[pivot] = coeficientesNumerador[pivot] + (resultado[i - 1] * coeficientesDenominador[k]);
+                    pivot++;
+                }
+            }
+            resultado[i] = coeficientesNumerador[i] / coeficientesDenominador[0];
+        }
+
+        int [] cociente = new int[resultado.length - gradoDenominador];
+        int [] residuo = new int[resultado.length - cociente.length];
+
+        int indiceCociente = 0;
+        int indiceResiduo = 0;
+        for (int i = 0; i < resultado.length; i++) {
+            if (i <= gradoDenominador) {
+                cociente[indiceCociente] = resultado[i];
+                indiceCociente++;
+            } else {
+                residuo[indiceResiduo] = resultado[i];
+                indiceResiduo++;
+            }
+        }
+
+        System.out.println("cociente:");
+        int k = 0;
+        for (int i = cociente.length - 1; i >= 0; i--) {
+            System.out.println("x^" + i + ": " + cociente[k]);
+            k++;
+        }
+
+        System.out.println("residuo:");
+        int r = 0;
+        for (int i = residuo.length - 1; i >= 0; i--) {
+            System.out.println("x^" + i + ": " + residuo[r]);
+            r++;
+        }
+
+    }
+
+}
