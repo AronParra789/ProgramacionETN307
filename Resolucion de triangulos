@@ -1,0 +1,111 @@
+/*Este programa resuelve triangulos, tambien encuenta el perimetro y el area*/
+/*considerar que las unidades de los lados y angulos ingresados son en (u) y (grados) respectivamente*/
+/*Usando las teoremas de seno, coseno, suma de angulos internos, ley de Heron para el Area, suma de lados para el perimetro*/
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+
+int main() {
+	float a,b,c,cs,p,s,alfa,beta,gama,pi,area;
+	cout<< "considerar el siguiente triangulo" <<endl;
+	cout<< "                       beta" <<endl;
+	cout<< "                        /\\" <<endl;
+	cout<< "                       /  \\" <<endl;
+	cout<< "                      /    \\" <<endl;
+	cout<< "                  a  /      \\  b" <<endl;
+	cout<< "                    /        \\" <<endl;
+	cout<< "                   /          \\" <<endl;
+	cout<< "                  /            \\" <<endl;
+	cout<< "                 /______________\\" <<endl;
+	cout<< "              alfa       c       gama" <<endl;
+	cout<< "Escoger el numero de CASO del cual disponga los datos" <<endl;
+	cout<< "Caso 1: 3 LADOS" <<endl;
+	cout<< "Caso 2: 3 ANGULOS" <<endl;
+	cout<< "Caso 3: 2 LADOS 1 ANGULO" <<endl;
+	cout<< "Caso 4: 1 LADO 2 ANGULOS" <<endl;
+	cin>> cs;
+	if (cs==1) {
+		cout << "introducir los 3 lados" <<endl;
+		cin>> a >> b >> c;
+		alfa = acos((a*a+c*c-b*b)/(2*a*c))*(180/M_PI);
+		beta = acos((a*a+b*b-c*c)/(2*a*b))*(180/M_PI);
+		gama = acos((b*b+c*c-a*a)/(2*b*c))*(180/M_PI);
+		p = a+b+c;
+		s = p/2;
+		area = sqrtf((s)*(s-a)*(s-b)*(s-c));
+		cout<< "el triangulo es" <<endl;
+		cout<< "                        " << beta <<endl;
+		cout<< "                        /\\" <<endl;
+		cout<< "                       /  \\" <<endl;
+		cout<< "                      /    \\" <<endl;
+		cout<< "                  " << a << "  /      \\  " << b <<endl;
+		cout<< "                    /        \\" <<endl;
+		cout<< "                   /          \\" <<endl;
+		cout<< "                  /            \\" <<endl;
+		cout<< "                 /______________\\" <<endl;
+		cout<< "           " << alfa << "         " << c << "         " << gama <<endl;
+		cout<< "Lados: a=" << a << ", b=" << b << ", c=" << c <<endl;
+		cout<< "Angulos: alfa=" << alfa << ", beta=" << beta << ", gama=" << gama <<endl;
+		cout<< "el area=" << area <<"(u^2)"<< " y el perimetro=" << p <<"(u)"<<endl;
+	}
+	if (cs==2) {
+		cout << "el triangulo debe tener al menos 1 lado!" <<endl;
+	}
+	if (cs==3) {
+		cout<< "introducir los 2 lados" <<endl;
+		cin>> a >> b;
+		cout<< "introducir el angulo" <<endl;
+		cin>> alfa;
+		gama = asin((a*sin(alfa*(M_PI/180)))/(b))*(180/M_PI);
+		beta = 180-alfa-gama;
+		c = (b*sin(beta))/(sin(alfa));
+		p = a+b+c;
+		s = p/2;
+		area = sqrtf((s)*(s-a)*(s-b)*(s-c));
+		cout<< "el triangulo es" << endl;
+			cout << "                        " << beta <<endl;
+		cout<< "                        /\\" <<endl;
+		cout<< "                       /  \\" <<endl;
+		cout<< "                      /    \\" <<endl;
+		cout<< "                  " << a << "  /      \\  " << b <<endl;
+		cout<< "                    /        \\" <<endl;
+		cout<< "                   /          \\" <<endl;
+		cout<< "                  /            \\" <<endl;
+		cout<< "                 /______________\\" <<endl;
+		cout<< "           " << alfa << "         " << c << "         " << gama <<endl;
+		cout<< "Lados: a=" << a << ", b=" << b << ", c=" << c <<endl;
+		cout<< "Angulos: alfa=" << alfa << ", beta=" << beta << ", gama=" << gama <<endl;
+		cout<< "el area=" << area << " y el perimetro=" << p <<endl;
+	}
+	if (cs==4) {
+		cout<< "introducir el lado" <<endl;
+		cin>> a;
+		cout << "introducir los 2 angulos" <<endl;
+		cin>> alfa >> gama;
+		b = (a*sin(alfa*(M_PI/180)))/(sin(gama*(M_PI/180)));
+		beta = 180-alfa-gama;
+		c = (a*sin(beta*(M_PI/180)))/(sin(alfa*(M_PI/180)));
+		p = a+b+c;
+		s = p/2;
+		area = sqrtf((s)*(s-a)*(s-b)*(s-c));
+		cout<< "el triangulo es" << endl;
+		cout<< "                        " << beta <<endl;
+		cout<< "                        /\\" <<endl;
+		cout<< "                       /  \\" <<endl;
+		cout<< "                      /    \\" <<endl;
+		cout<< "                " << a << "  /      \\  " << b <<endl;
+		cout<< "                    /        \\" <<endl;
+		cout<< "                   /          \\" <<endl;
+		cout<< "                  /            \\" <<endl;
+		cout<< "                 /______________\\" <<endl;
+		cout<< "           " << alfa << "         " << c << "         " << gama <<endl;
+		cout<< "Lados: a=" << a << ", b=" << b << ", c=" << c <<endl;
+		cout<< "Angulos: alfa=" << alfa << ", beta=" << beta << ", gama=" << gama <<endl;
+		cout<< "el area=" << area << " y el perimetro=" << p <<endl;
+	}
+	return 0;
+	
+	
+}
