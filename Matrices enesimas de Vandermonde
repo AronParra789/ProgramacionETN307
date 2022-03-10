@@ -1,0 +1,129 @@
+//ESTE PROGRAMA RESUELVE MATRIZES DE CUALQUIER ORDEN Y SACA SU DETERMINANTE
+
+
+#include <iostream>
+#include <cmath>
+#define MAX 100
+
+using namespace std;
+
+void mostrar_matriz(int matriz[][MAX], int orden);
+int determinante(int matriz[][MAX], int orden);
+int cofactor(int matriz[][MAX], int orden, int fila, int columna);
+
+int main()
+{
+   int matriz[MAX][MAX];
+   int orden;
+   
+   
+   cout << "LA MATRIZ DE VANDERMONDE ES DE LA FORMA"<<endl; //ESTE ES LA FORMA QUE TIENE UNA MATRIZ DE CANDERMONDE 
+   
+cout << ""<<endl;
+   cout << "[1 , a  ,  a^2 , a^3  , ........  a^(m-1)]"<<endl;
+   cout << "[1 , a1 , a1^2 , a1^3 , ........ a1^(m-1)]"<<endl;//VEMOS QUE EN LA PRIMER COLUMNA ES 1
+   cout << "[1 , a2 , a2^2 , a2^3 , ........ a2^(m-1)]"<<endl;//VEMOS QUE EL EXPONENTE EN CADA COLUMNA AUMENTA UN GRADO
+   cout << "[1 , a3 , a3^2 , a3^3 , ........ a3^(m-1)]"<<endl;//EMPIEZA DESDE 0 Y VA HAS (m-1) VECES
+   cout << "[.   .     .     .    .               .  ]"<<endl;
+   cout << "[.   .     .     .       .            .  ]"<<endl;
+   cout << "[.   .     .     .          .         .  ]"<<endl;
+   cout << "[.   .     .     .             .      .  ]"<<endl;
+   cout << "[1 , an , an^2 , an^3 , ........ an^(m-1)]"<<endl;
+   cout << ""<<endl;
+   
+   cout << "LA MATRIZ QUE RESOLVEREMOS ES DE LA FORMA"<<endl;
+   //EXPLICAMOS UN POCO DE COMO ES LA MANERA CORRECTA DE INGRESA VALORES
+   cout << ""<<endl;
+   cout << "un ejemplo de al ingresar los valores se ara el el siguiente orden"<<endl;
+   cout << ""<<endl;
+   cout << "[a , b , c]"<<endl;//LOS VALORES INGRESADOS SERAN PRIMERO LA LA PRIMERA FILA
+   cout << "[d , e , f]"<<endl;//LUEGO LA SEGUNDA FILA
+   cout << "[g , h , i]"<<endl;// Y ASI SUSESIVAMENTE
+ 
+   cout << ""<<endl;
+   cout << "al anotar los valores se registraran en el siguiente orden"<<endl;
+   cout << ""<<endl;
+   cout << "a= primer valor a ingresar"<<endl;// ESTA SERA LA MANERA QUE SE REGISTRARAN LOS VALORES DE UNA MATRIZ
+   cout << "b= segundo valor a ingresar"<<endl;
+   cout << "c= tercer valor a ingresar"<<endl;
+   cout << "d= cuarto valor a ingresar"<<endl;
+   cout << "e= quinto valor a ingresar"<<endl;
+   cout << "."<<endl;
+   cout << "."<<endl;
+   cout << "."<<endl;
+   cout << "y asi hasta anotar el ultimo numero"<<endl;
+   cout << ""<<endl;
+   
+  
+   
+   cout << "Ingresa el orden de la matriz : ";//AQUI INGRESAMOS EL ORDEN DE LA MATRIZ QUE SERA CUADRADA
+   cin >> orden;
+  
+   
+   cout << "\nIngrese los elementos de la matriz:\n\n";//EN AQUI IREMOS INGRESANDO LOS VALORES
+   for (int i = 0; i < orden; i++) {
+      for (int j = 0; j < orden; j++) {//SEGUNA LA MANERA DEL EJEMPLO ANTERIOR
+         cin >> matriz[i][j];
+      }
+   }
+
+   cout << "\nMostrando la matriz ingresada:\n";//AQUI NOS MOSTRARA LA FORMA DE LA MATRIZ ESCRITA
+   mostrar_matriz(matriz, orden);
+   
+   cout << "\nEl determinante es: " << determinante(matriz, orden) << endl;//AQUI NOS MOSTRARA LA DETERMINANTE
+
+   cin.get();
+   cin.get();
+   return 0;
+}
+
+void mostrar_matriz(int matriz[][MAX], int orden)
+{
+   cout << "Orden: " << orden << endl;
+   for (int i = 0; i < orden; i++) {
+      for (int j = 0; j < orden; j++) {
+         cout << "\t" << matriz[i][j];
+      }
+      cout << "\n";
+   }
+}
+
+
+int determinante(int matriz[][MAX], int orden)//AQUI NOS CALCULARA EL DETERMINANTE
+{
+   int det = 0.0;
+   
+   if (orden == 1) {
+      det = matriz[0][0];
+   } else {
+      for (int j = 0; j < orden; j++) {
+         det = det + matriz[0][j] * cofactor(matriz, orden, 0, j);
+      }
+   }
+   
+   return det;
+}
+
+
+int cofactor(int matriz[][MAX], int orden, int fila, int columna)//AQUI RESOLVERA EL COFACTOR
+{
+   int submatriz[MAX][MAX];
+   int n = orden - 1;
+   
+   int x = 0;
+   int y = 0;
+   for (int i = 0; i < orden; i++) {
+      for (int j = 0; j < orden; j++) {
+         if (i != fila && j != columna) {
+            submatriz[x][y] = matriz[i][j];
+            y++;
+            if (y >= n) {
+               x++;
+               y = 0;
+            }
+         }
+      }
+   }
+   
+   return pow(-1.0, fila + columna) * determinante(submatriz, n);
+}
